@@ -1,0 +1,9 @@
+name: darkblueacgstandby
+version: 1
+handle:
+
+- errordoc: 404 /http://1.darkblueacgstandby.sinaapp.com/Homepage/404.html
+
+cron: - description: backup
+url: back.php
+schedule: every Saturday of month 02:00

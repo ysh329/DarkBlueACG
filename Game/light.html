@@ -1,0 +1,187 @@
+<HTML>
+<HEAD>
+<TITLE>点灯小游戏</TITLE>
+
+        <meta charset="UTF-8">
+        <!--<meta name="viewport" content="width=device-width,user-scalable=no">-->
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0">
+
+<style type="text/css">
+<!--
+.STYLE1 {
+	font-family: "微软雅黑";
+	font-size: 30px;
+	color: #990000;
+}
+.STYLE2 {
+	font-family: "微软雅黑";
+	font-size: 30px;
+	color: #FF0066;
+}
+-->
+</style>
+</HEAD>
+<BODY>
+<SCRIPT>
+function ShowMenu(bMenu) {
+document.all.idFinder.style.display = (bMenu) ? "none" : "block"
+document.all.idMenu.style.display = (bMenu) ? "block" : "none"
+idML.className = (bMenu) ? "cOn" : "cOff"
+idRL.className = (bMenu) ? "cOff" : "cOn"
+return false
+}
+</SCRIPT>
+<SCRIPT>
+function addList(url,desc) {
+if ((navigator.appName=="Netscape") || (parseInt(navigator.appVersion)>=4)) {
+var w=window.open("","_IDHTML_LIST_","top=0,left=0,width=475,height=150,history=no,menubar=no,status=no,resizable=no")
+var d=w.document
+if (!w._init) {
+d.open()
+d.write("<TITLE>Loading...</TITLE><EM>Loading...</EM>")
+d.close()
+d.location.replace("/assist/listing.asp?url="+escape(url)+"&desc="+escape(desc))
+w.opener=self
+window.status="Personal Assistant (Adding): " + desc
+} else {
+window.status=w.addOption(url,desc)
+w.focus()
+}
+}
+else
+alert("Your browser does not support the personal assistant.")
+return false
+}
+</SCRIPT>
+
+<STYLE>#board {
+	CURSOR: default
+}
+#board TD {
+	WIDTH: 25px; HEIGHT: 25px
+}
+</STYLE>
+
+<SCRIPT>
+    var size=10
+    var moves = 0
+    var off = size*2
+    var on = 0
+    var current = null
+    function doOver() {
+      if ((event.srcElement.tagName=="TD") && (current!=event.srcElement)) {
+        if (current!=null)
+          current.style.backgroundColor = current._background
+        event.srcElement._background = event.srcElement.style.backgroundColor
+        event.srcElement.style.backgroundColor = "lightgrey"
+        current = event.srcElement
+      }
+    }
+
+    function setColor(el) {
+      if ((el._background=="") || (el._background==null)) {
+        el.style.backgroundColor = "blue"
+        el._background = "blue"
+      } else {
+        el.style.backgroundColor = ""
+        el._background = ""
+      }
+    }
+
+    function countLights() {
+      off = 0; on = 0
+      for (var x=0; x < size; x++)
+        for (var y=0; y < size; y++) {
+          var p = board.rows[x].cells[y]
+          if (p._background=="blue")
+            on++
+          else
+            off ++
+        }
+        document.all.on.innerText = on
+      if (off!=0)
+        document.all.off.innerText = off
+      else
+        document.all.off.innerText = "You Win!"
+      return (off==0)
+    }
+
+    function doClick() {
+      setColor(current)
+      var cellIdx = current.cellIndex
+      var rowIdx = current.parentElement.rowIndex
+      if (rowIdx>0)
+        setColor(board.rows[rowIdx-1].cells[cellIdx])
+      if (rowIdx<size-1)
+        setColor(board.rows[rowIdx+1].cells[cellIdx])
+      if (cellIdx>0)
+        setColor(board.rows[rowIdx].cells[cellIdx-1])
+      if (cellIdx<size-1)
+        setColor(board.rows[rowIdx].cells[cellIdx+1])
+      moves++
+      document.all.moves.innerText = moves
+      win = countLights()
+      if (win) {
+        board.onclick = null
+        board.onmouseover = null
+        current.style.background = "blue"
+      }
+    }
+function buildBoard() {
+var str = "<TABLE ID=board ONSELECTSTART=\"return false\" ONCLICK=\"doClick()\" ONMOUSEOVER=\"doOver()\" cellspacing=0 cellpadding=0 border=5>"
+      for (var x=0; x < size; x++) {
+        str+="<TR>"
+        for (var y=0; y < size; y++) {
+          str+="<TD> </TD>"
+        }
+        str+="</TR>"
+      }
+      str+="</TABLE>"
+      return str
+    }
+function newGame() {
+      size = document.all.gameSize.value
+      if (size<3)
+        size=3
+      if (size>15)
+        size=15
+      document.all.gameSize.value = size
+      document.all.board.outerHTML = buildBoard()
+      moves=0
+      document.all.moves.innerText = moves
+      countLights()
+
+    }
+</SCRIPT>
+    在方格上点击，你可以将下面的方格全部填成蓝色吗<br />
+	快开动你智慧脑筋，看看有什么技巧与规律。
+<TABLE width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD width="50%">
+      <DIV align=right>
+      <TABLE id=score width=284 border=0>
+        <TBODY>
+        <TR>
+          <TD width=52>移动: </TD>
+          <TD id=moves width=33>0</TD>
+          <TD width=42>灯灭:</TD>
+          <TD id=off width=36>25</TD>
+          <TD width=46>灯亮:</TD>
+          <TD id=on width=39>0</TD></TR></TBODY></TABLE></DIV></TD>
+    <TD width="50%">
+      <DIV align=left>
+      <TABLE width=204>
+        <TBODY>
+        <TR>
+          <TD width=54>大小: </TD>
+          <TD width=41><INPUT id=gameSize size=2 value=10></TD>
+          <TD 
+        width=97><INPUT onclick=newGame() type=button value=开始游戏></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
+<P align=center>
+<SCRIPT>
+    document.write(buildBoard())
+  </SCRIPT>
+</P>
+</BODY>
+</HTML>

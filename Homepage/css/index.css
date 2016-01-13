@@ -1,0 +1,135 @@
+#__01 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:570px;
+	height:1032px;
+}
+
+#index-01 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:570px;
+	height:20px;
+}
+
+#index-02 {
+	position:absolute;
+	left:0px;
+	top:20px;
+	width:24px;
+	height:1012px;
+}
+
+#index {
+	position:absolute;
+	left:24px;
+	top:20px;
+	width:231px;
+	height:25px;
+}
+
+#index-04 {
+	position:absolute;
+	left:255px;
+	top:20px;
+	width:315px;
+	height:318px;
+}
+
+#index-05 {
+	position:absolute;
+	left:24px;
+	top:45px;
+	width:231px;
+	height:293px;
+}
+
+#index-06 {
+	position:absolute;
+	left:24px;
+	top:338px;
+	width:8px;
+	height:694px;
+}
+
+#animation {
+	position:absolute;
+	left:32px;
+	top:338px;
+	width:235px;
+	height:235px;
+}
+
+#index-08 {
+	position:absolute;
+	left:267px;
+	top:338px;
+	width:33px;
+	height:694px;
+}
+
+#comic {
+	position:absolute;
+	left:300px;
+	top:338px;
+	width:235px;
+	height:235px;
+}
+
+#index-10 {
+	position:absolute;
+	left:535px;
+	top:338px;
+	width:35px;
+	height:694px;
+}
+
+#index-11 {
+	position:absolute;
+	left:32px;
+	top:573px;
+	width:235px;
+	height:34px;
+}
+
+#index-12 {
+	position:absolute;
+	left:300px;
+	top:573px;
+	width:235px;
+	height:34px;
+}
+
+#game {
+	position:absolute;
+	left:32px;
+	top:607px;
+	width:235px;
+	height:235px;
+}
+
+#novel {
+	position:absolute;
+	left:300px;
+	top:607px;
+	width:235px;
+	height:235px;
+}
+
+#index-15 {
+	position:absolute;
+	left:32px;
+	top:842px;
+	width:235px;
+	height:190px;
+}
+
+#index-16 {
+	position:absolute;
+	left:300px;
+	top:842px;
+	width:235px;
+	height:190px;
+}
